@@ -31,8 +31,8 @@ int main(int argc, char **argv)
 {
     darts_init();
 
-    // test_manual_camera_image();
-    // test_JSON();
+    test_manual_camera_image();
+    test_JSON();
     // test_camera_class_image();
 
     // test_transforms();
@@ -76,8 +76,11 @@ void test_manual_camera_image()
             // 3) the z component is -1
             // 
             // Make sure to calculate the ray directions to go through the center of each pixel
-            Vec3f ray_origin;
-            Vec3f ray_direction;
+            Vec3f ray_origin = camera_origin;
+            Vec3f ray_direction(lerp(-image_plane_width/2, +image_plane_width/2, x / (ray_image.width() - 1.0f)),
+                                lerp(+image_plane_height/2, -image_plane_height/2, y / (ray_image.height() - 1.0f)),
+                                -1.f
+                                );
             auto  ray = Ray3f(ray_origin, ray_direction);
 
             // Generate a visual color for the ray so we can debug our ray directions
@@ -85,7 +88,7 @@ void test_manual_camera_image()
         }
     }
 
-    string filename("scenes/assignment1/01_manual_ray_image.png");
+    string filename("../../../scenes/assignment1/01_manual_ray_image.png");
     spdlog::info("Saving ray image to {}....", filename);
     ray_image.save(filename);
 }
@@ -131,7 +134,7 @@ void test_JSON()
     // We can also read these structures back out of the JSON object
     float  f2 = j["my float"];
     string s2 = j["my string"];
-    Color3f c3f2 = j["my color3"];
+    Color3f c3f2 = j["my color"];
     Vec3f v3f2 = j["my vector3"];
     Vec3f n3f2 = j["my normal"];
 
@@ -164,8 +167,8 @@ void function_with_JSON_parameters(const json &j)
 
     // TODO: Replace the below two lines to extract the parameters radius (default=1.f),
     // and center (default={0,0,0}) from the JSON object j
-    float radius = 1.f;
-    Vec3f center = Vec3f(0.f);
+    float radius = j.value<float>("radius", 1.f);
+    Vec3f center = j.value<Vec3f>("center", {0, 0, 0});
     spdlog::info("The radius is: {}", radius);
     spdlog::info("The center is:\n{}", center);
 }
