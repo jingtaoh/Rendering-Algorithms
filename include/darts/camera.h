@@ -52,14 +52,19 @@ public:
         m_focal_distance  = j.value("fdist", m_focal_distance);
         m_aperture_radius = j.value("aperture", m_aperture_radius);
 
-        float vfov = 90.f; // Default vfov value. Override this with the value from json
+        float vfov = j.value("vfov", 90.f);; // Default vfov value. Override this with the value from json
         // TODO: Assignment 1: read the vertical field-of-view from j ("vfov"),
         // and compute the width and height of the image plane. Remember that
         // the "vfov" parameter is specified in degrees, but C++ math functions
         // expect it in radians. You can use deg2rad() from common.h to convert
         // from one to the other
-        put_your_code_here("Assignment 1: Compute the image plane size.");
-        m_size = Vec2f(2.f, 1.f);
+        //put_your_code_here("Assignment 1: Compute the image plane size.");
+        float aspect_ratio = ((float) m_resolution.x) / m_resolution.y;
+        auto theta = deg2rad(vfov);
+        auto h = tan(theta / 2);
+        auto viewport_height = 2.0 * h;
+        auto viewport_width = viewport_height * aspect_ratio;
+        m_size = Vec2f(viewport_width, viewport_height);
     }
 
     /// Return the camera's image resolution
@@ -80,8 +85,15 @@ public:
     Ray3f generate_ray(const Vec2f &pixel) const
     {
         // TODO: Assignment 1: Implement camera ray generation
-        put_your_code_here("Assignment 1: Insert your camera ray generation code here");
-        return Ray3f(Vec3f(0.f), Vec3f(1.f));
+        //put_your_code_here("Assignment 1: Insert your camera ray generation code here");
+        Vec2f uv(pixel.x / (m_resolution.x - 1.f), pixel.y / (m_resolution.y - 1.f));
+
+        Vec3f origin(0, 0, 0);
+        auto dir = Vec3f(1.f);
+        dir.x = -m_size.x / 2.f + uv.x * m_size.x;
+        dir.y =  m_size.y / 2.f - uv.y * m_size.y;
+        dir.z = -m_focal_distance;
+        return Ray3f(origin, dir);
     }
 
 

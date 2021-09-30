@@ -33,7 +33,7 @@ int main(int argc, char **argv)
 
     test_manual_camera_image();
     test_JSON();
-    // test_camera_class_image();
+    test_camera_class_image();
 
     // test_transforms();
     // test_xformed_camera_image();
@@ -201,7 +201,7 @@ void test_camera_class_image()
         }
     }
 
-    string filename("scenes/assignment1/01_camera_ray_image.png");
+    string filename("../../../scenes/assignment1/01_camera_ray_image.png");
     spdlog::info("Saving ray image to {}....", filename);
     ray_image.save(filename);
 }
