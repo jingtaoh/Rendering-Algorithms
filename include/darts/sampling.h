@@ -48,9 +48,106 @@ inline Vec2f random_in_unit_disk()
     return p;
 }
 
+/// Uniformly sample a vector on a 2D disk with radius 1, centered around the origin
+inline Vec2f sample_disk(const Vec2f &rv)
+{
+    float r                 = std::sqrt(rv.y);
+    auto [sin_phi, cos_phi] = sincos(2.0f * M_PI * rv.x);
+
+    return Vec2f(cos_phi * r, sin_phi * r);
+}
 
 
+/// Probability density of #sample_disk()
+inline float sample_disk_pdf(const Vec2f &p)
+{
+    return length2(p) <= 1 ? INV_PI : 0.0f;
+}
 
+/// Uniformly sample a vector on the unit sphere with respect to solid angles
+inline Vec3f sample_sphere(const Vec2f &rv)
+{
+    return Vec3f{0.f}; // CHANGEME
+}
+
+/// Probability density of #sample_sphere()
+inline float sample_sphere_pdf()
+{
+    return 0.f; // CHANGEME
+}
+
+
+/// Uniformly sample a vector on the unit hemisphere around the pole (0,0,1) with respect to solid angles
+inline Vec3f sample_hemisphere(const Vec2f &rv)
+{
+    return Vec3f{0.f}; // CHANGEME
+}
+
+/// Probability density of #sample_hemisphere()
+inline float sample_hemisphere_pdf(const Vec3f &v)
+{
+    return 0.f; // CHANGEME
+}
+
+/// Uniformly sample a vector on the unit hemisphere around the pole (0,0,1) with respect to projected solid
+/// angles
+inline Vec3f sample_hemisphere_cosine(const Vec2f &rv)
+{
+    return Vec3f{0.f}; // CHANGEME
+}
+
+/// Probability density of #sample_hemisphere_cosine()
+inline float sample_hemisphere_cosine_pdf(const Vec3f &v)
+{
+    return 0.f; // CHANGEME
+}
+
+/// Sample a vector on the unit hemisphere with a cosine-power density about the pole (0,0,1)
+inline Vec3f sample_hemisphere_cosine_power(float exponent, const Vec2f &rv)
+{
+    return Vec3f{0.f}; // CHANGEME
+}
+
+/// Probability density of #sample_hemisphere_cosine_power()
+inline float sample_hemisphere_cosine_power_pdf(float exponent, float cosine)
+{
+    return 0.f; // CHANGEME
+}
+
+
+/*!
+    Uniformly sample a vector on a spherical cap around (0, 0, 1)
+
+    A spherical cap is the subset of a unit sphere whose directions make an angle of less than 'theta' with the north
+    pole. This function expects the cosine of 'theta' as a parameter.
+ */
+inline Vec3f sample_sphere_cap(const Vec2f &rv, float cos_theta_max)
+{
+    return Vec3f{0.f}; // CHANGEME
+}
+
+/// Probability density of #sample_sphere_cap()
+inline float sample_sphere_cap_pdf(float cos_theta, float cos_theta_max)
+{
+    return 0.f; // CHANGEME
+}
+
+/*!
+    Sample a point uniformly on a triangle with vertices `v0`, `v1`, `v2`.
+
+    \param v0,v1,v2 The vertices of the triangle to sample
+    \param rv       Two random variables uniformly distributed in [0,1)
+*/
+inline Vec3f sample_triangle(const Vec3f &v0, const Vec3f &v1, const Vec3f &v2, const Vec2f &rv)
+{
+    return Vec3f{0.f}; // CHANGEME
+}
+
+/// Sampling density of #sample_triangle()
+inline float sample_triangle_pdf(const Vec3f &v0, const Vec3f &v1, const Vec3f &v2)
+{
+    return 0.f; // CHANGEME
+}
 
 
 
