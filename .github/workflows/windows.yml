@@ -56,7 +56,7 @@ jobs:
         run: |
           ./build/${{matrix.buildtype}}/darts_tutorial0.exe
           ./build/${{matrix.buildtype}}/darts_tutorial1.exe
-#          ./build/${{matrix.buildtype}}/point_gen.exe
+          ./build/${{matrix.buildtype}}/point_gen.exe
 
       - name: Comparing generated images against reference
         working-directory: ${{github.workspace}}
