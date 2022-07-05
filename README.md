@@ -1,14 +1,12 @@
 CS 87/287 Assignments
 =====================
 
-Student name:
-
-netid:
+Student name: Jingtao Huang
 
 ## Build status
 
-[![macOS+Ubuntu](https://github.com/cs87-dartmouth/darts-solutions/actions/workflows/mac-linux.yml/badge.svg?branch=main)](https://github.com/cs87-dartmouth/darts-solutions/actions/workflows/mac-linux.yml)
-[![Windows](https://github.com/cs87-dartmouth/darts-solutions/actions/workflows/windows.yml/badge.svg?branch=main)](https://github.com/cs87-dartmouth/darts-solutions/actions/workflows/windows.yml)
+[![macOS+Ubuntu](https://github.com/jingtaoh/Rendering-Algorithms/actions/workflows/mac-linux.yml/badge.svg?branch=main)](https://github.com/jingtaoh/Rendering-Algorithms/actions/workflows/mac-linux.yml)
+[![Windows](https://github.com/jingtaoh/Rendering-Algorithms/actions/workflows/windows.yml/badge.svg?branch=main)](https://github.com/jingtaoh/Rendering-Algorithms/actions/workflows/windows.yml)
 
 ## Assignment reports
 
