@@ -1,53 +1,32 @@
 <meta charset="utf-8" emacsmode="-*- markdown -*-">
-<style class="fallback">body {visibility: hidden}</style>
+<style class="fallback">
+    body {
+        visibility: hidden
+    }
+</style>
 <link href="../resources/common.css" rel="stylesheet" type="text/css" />
 
 **Assignment 0**
 
-Student name: XXXX
+(##) Part 1: Vectors
 
-netid: YYYY
+- [x] Read `void test_vectors_and_matrices()`
 
-(##) About this template
+(##) Part 2: Colors and Images
 
-* Structure your report using numbers and titles following those of the assignment.
-
-* For every task include all images you generated. darts will generate both an `.exr` and an sRGB tonemapped `.png` image of your rendering. Use the `.png` in the comparisons in your report.
-
-* For tasks where we provide a reference image, include a comparison of your output to the reference (see examples of this below)
-
-* Include descriptions of encountered problems, if any.
-
-For an overview of Markdeep and its syntax, see the [official demo document](https://casual-effects.com/markdeep/features.md.html) and the associated [source code](https://casual-effects.com/markdeep/features.md.html?noformat).
-
-(##) Task 1
-
-Create one section for each task. You can create subsections within each task if you need more structure.
-
-LaTeX is also supported:
-$$
-L_o(\mathbf{x}, \omega_o) = \int_{\Omega} L_i(\mathbf{x},\omega_i)\, f(\mathbf{x}, \omega_i, \omega_o)\,
-|\cos\theta_i|\, \mathrm{d}\omega_i
-$$
-
-You can easily include an image comparison like so:
+- [x] Generate a `gradient.png` image
 
 <div class="twentytwenty-container">
-    <img src="task1-reference.png" alt="Reference">
-    <img src="task1-mine.png" alt="Mine">
+    <img src="../../scenes/assignment0/gradient-ref.png" alt="Reference">
+    <img src="../../scenes/assignment0/gradient.png" alt="Mine">
 </div>
 
-(##) Task 2
+- [x] Convert `cornellbox.png` to grayscale.
 
 <div class="twentytwenty-container">
-    <img src="task2-reference.png" alt="Reference">
-    <img src="task2-mine.png" alt="Mine">
+    <img src="../../scenes/assignment0/cornell_grayscale-ref.png" alt="Reference">
+    <img src="../../scenes/assignment0/cornell_grayscale.png" alt="Mine">
 </div>
-
-(##) Task 3, etc.
-
-Add additional sections as needed.
-
 
 (##) Tutorial output
 
@@ -55,9 +34,87 @@ For this assignment, make sure to run the tutorial and save the output, for inst
 
 `build/darts_tutorial0 > output.txt`
 
-Copy-paste this output into the report here.
+```
+cwd = /Users/Lewis/Codes/Rendering-Algorithms/build/Release
 
+--------------------------------------------------------
+PROGRAMMING ASSIGNMENT 0, PART 1: Vectors and Matrices
+--------------------------------------------------------
+v1 = {-0.1, 0.2, -0.3}
+v2 = {1, 1, 1}.
+v3 = {0.5, 0.25, -0.123}.
 
+You can access specific components using x, y, and z.
+The z coordinate of v3 is -0.123.
+
+We can also element-wise add, subtract, and multiply vectors:
+v1 + v2:
+{-0.1, 0.2, -0.3}
++ {1, 1, 1}
+= {0.9, 1.2, 0.7}
+v1 / v3:
+{-0.1, 0.2, -0.3}
+/ {0.5, 0.25, -0.123}
+= {-0.2, 0.8, 2.4390244}
+
+or perform mixed vector-scalar arithmetic
+scalar * v2:
+2
+* {1, 1, 1}
+= {2, 2, 2}
+We can compute the length of a vector, or normalize it, or take the dot product or cross product of two vectors:
+The length of v2 is: 1.7320508
+The squared length of v2 is: 3
+A normalized copy of v2 is: {0.57735026, 0.57735026, 0.57735026}
+Let's confirm that its length is 1: 0.99999994
+
+The dot product of v1 and v3 is: 0.036900003
+The cross product of v1 and v2 is: {0.5, -0.20000002, -0.3}
+The angle between v1 and v3 is: 87.8853
+Result correct!
+The origin of ray is {0.5, 2, -3}.
+The direction of ray is {-0.25, -0.5, 0.3}.
+The matrix is
+{{1, 0, 0, 0},
+{0, 2, 0, 0},
+{0, 0, 3, 0},
+{4, 5, 6, 1}}.
+The inverse is
+{{1, 0, 0, 0},
+{0, 0.5, 0, 0},
+{0, 0, 0.33333334, 0},
+{-4, -2.5, -2, 1}}.
+mat*inv should be the identity
+{{1, 0, 0, 0},
+{0, 1, 0, 0},
+{0, 0, 1, 0},
+{0, 0, 0, 1}}.
+
+--------------------------------------------------------
+PROGRAMMING ASSIGNMENT 0, PART 2: Color & image tutorial
+--------------------------------------------------------
+white = {1, 1, 1}.
+red = {1, 0, 0}.
+blue = {0, 0, 1}.
+magenta = {1, 0, 1}.
+pinkish = {1, 0.5, 0.5}.
+still_red = {1, 0, 0}.
+Red channel of pinkish is: 1
+Green channel of pinkish is: 0.5
+Blue channel of still_red is: 0
+After scaling by 2, red channel of pinkish is: 2
+The luminance of pinkish is: 0.8190065
+25% of the way from blue to red is: {0.25, 0, 0.75}.
+Creating gradient image.
+Saving image "gradient.png" ...
+Loading image cornellbox.png ...
+Loading: ../../scenes/assignment0/cornellbox.png
+│████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████│
+(40ms)
+Converting image to grayscale....
+Saving image cornell_grayscale.png....
+Done!
+```
 
 <!-- Slider -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -171,7 +171,7 @@ void test_color_and_image()
     Color3f still_red = red * white;
 
     // TODO: Initialize the color pinkish to the average of white and red
-    Color3f pinkish;
+    Color3f pinkish = (white + red) / 2.0f;
 
     spdlog::info("white    = {}.", white);
     spdlog::info("red      = {}.", red);
@@ -256,9 +256,9 @@ void test_color_and_image()
         }
     }
 
-    //put_your_code_here("Populate an image with a color gradient and save to \"scenes/assignment0/gradient.png\"");
+    // put_your_code_here("Populate an image with a color gradient and save to \"scenes/assignment0/gradient.png\"");
     spdlog::info("Saving image \"gradient.png\" ...");
-    gradient.save("../../../scenes/assignment0/gradient.png");
+    gradient.save("../../scenes/assignment0/gradient.png");
 
     // Now, we will load an image, modify it, and save it back to disk.
     Image3f image;
@@ -266,27 +266,27 @@ void test_color_and_image()
     // TODO: Load the image scenes/assignment0/cornellbox.png into the
     // ``image'' variable
     spdlog::info("Loading image cornellbox.png ...");
-    image.load("../../../scenes/assignment0/cornellbox.png");
-    //put_your_code_here("Load the image \"scenes/assignment0/cornellbox.png\".");
-    // Hint: Take a look at Image3f::load
-    // Keep in mind filenames are interpreted relative to your current
-    // working directory
+    image.load("../../scenes/assignment0/cornellbox.png");
+    // put_your_code_here("Load the image \"scenes/assignment0/cornellbox.png\".");
+    //  Hint: Take a look at Image3f::load
+    //  Keep in mind filenames are interpreted relative to your current
+    //  working directory
 
     // TODO: Convert the image to grayscale. Loop over every pixel and convert
     // it to grayscale by replacing every pixel with its luminance
     spdlog::info("Converting image to grayscale....");
-    //put_your_code_here("Convert the image to grayscale.");
+    // put_your_code_here("Convert the image to grayscale.");
     for (int i = 0; i < image.size(); ++i)
     {
         float lum = luminance(image(i));
-        image(i) = Color3f(lum, lum, lum);
+        image(i)  = Color3f(lum, lum, lum);
     }
 
     // TODO: Save the image to scenes/assignment0/cornell_grayscale.png
     // Hint: Take a look at Image3f::save
     spdlog::info("Saving image cornell_grayscale.png....");
-    //put_your_code_here("Save the image to \"scenes/assignment0/cornell_grayscale.png\".");
-    image.save("../../../scenes/assignment0/cornell_grayscale.png");
+    // put_your_code_here("Save the image to \"scenes/assignment0/cornell_grayscale.png\".");
+    image.save("../../scenes/assignment0/cornell_grayscale.png");
 
     success("Done!\n");
 }
